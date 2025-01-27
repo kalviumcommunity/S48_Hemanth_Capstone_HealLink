@@ -1,14 +1,20 @@
 [
-    {
-        "id": 1,
-        "name": "Ginger Tea",
-        "description": "Relieves cold symptoms",
-        "instructions": "Boil ginger in water, add honey and lemon."
-    },
-    {
-        "id": 2,
-        "name": "Honey Lemon",
-        "description": "Soothes sore throat",
-        "instructions": "Mix honey and lemon in warm water."
-    }
+  {
+    "id": 1,
+    "name": "Ginger Tea",
+    "description": "Relieves cold symptoms",
+    "instructions": "Boil ginger in water, add honey and lemon."
+  },
+  {
+    "id": 2,
+    "name": "Honey Lemon",
+    "description": "Soothes sore throat",
+    "instructions": "Mix honey and lemon in warm water."
+  },
+  {
+    "id": 3,
+    "name": "Turmeric Milk",
+    "description": "Helps with inflammation",
+    "instructions": "Add turmeric to warm milk and stir well."
+  }
 ]
