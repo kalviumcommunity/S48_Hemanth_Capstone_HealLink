@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Ginger Tea",
+        "description": "Relieves cold symptoms",
+        "instructions": "Boil ginger in water, add honey and lemon."
+    },
+    {
+        "id": 2,
+        "name": "Honey Lemon",
+        "description": "Soothes sore throat",
+        "instructions": "Mix honey and lemon in warm water."
+    }
+]
