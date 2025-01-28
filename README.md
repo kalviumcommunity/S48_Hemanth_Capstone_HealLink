@@ -42,3 +42,5 @@ This documentation provides a detailed overview of the HealLink project, highlig
 1. **Low-Fidelity (Low-Fid) Design**
 2. **Set Up GitHub Project**
 3. **Plan Database Schema**
+
+Backend Depolyment : https://s48-hemanth-capstone-heallink.onrender.com/api/remedies
