@@ -1,58 +1,51 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
-const path = require('path');
+const Remedy = require('../models/remedy');
 
-const remediesFilePath = path.join(__dirname, '../data/remedies.json');
-
-const updateRemediesFile = (remedies) => {
-    fs.writeFileSync(remediesFilePath, JSON.stringify(remedies, null, 2));
-};
-
-let remedies = require('../data/remedies.json');
-
-router.get('/', (req, res) => {
-    res.json(remedies);
+router.get('/', async (req, res) => {
+    try {
+        const remedies = await Remedy.find();
+        res.json(remedies);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const { name, description, instructions } = req.body;
 
     if (!name || !description || !instructions) {
         return res.status(400).json({ message: "All fields are required" });
     }
 
-    const newRemedy = {
-        id: remedies.length + 1,
-        name,
-        description,
-        instructions
-    };
-
-    remedies.push(newRemedy);
-    updateRemediesFile(remedies);
-
-    res.status(201).json(newRemedy);
+    try {
+        const newRemedy = new Remedy({ name, description, instructions });
+        await newRemedy.save();
+        res.status(201).json(newRemedy);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { name, description, instructions } = req.body;
 
-    const remedyIndex = remedies.findIndex(remedy => remedy.id === parseInt(id));
+    try {
+        const updatedRemedy = await Remedy.findByIdAndUpdate(
+            id,
+            { name, description, instructions },
+            { new: true, runValidators: true }
+        );
 
-    if (remedyIndex === -1) {
-        return res.status(404).json({ message: "Remedy not found" });
+        if (!updatedRemedy) {
+            return res.status(404).json({ message: "Remedy not found" });
+        }
+
+        res.json({ message: "Remedy updated successfully", remedy: updatedRemedy });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-
-    if (!name || !description || !instructions) {
-        return res.status(400).json({ message: "All fields are required for update" });
-    }
-
-    remedies[remedyIndex] = { id: parseInt(id), name, description, instructions };
-    updateRemediesFile(remedies);
-
-    res.json({ message: "Remedy updated successfully", remedy: remedies[remedyIndex] });
 });
 
 module.exports = router;
