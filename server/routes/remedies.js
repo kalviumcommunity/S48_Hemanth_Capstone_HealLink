@@ -48,4 +48,19 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedRemedy = await Remedy.findByIdAndDelete(id);
+
+        if (!deletedRemedy) {
+            return res.status(404).json({ message: "Remedy not found" });
+        }
+
+        res.json({ message: "Remedy deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 module.exports = router;
