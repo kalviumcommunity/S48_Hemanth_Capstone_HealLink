@@ -37,3 +37,5 @@ HealLink is an innovative web-based platform designed to assist users in managin
 This documentation provides a detailed overview of the HealLink project, highlighting its purpose, key features, and the technology stack used to develop it. The platform is designed to empower users with knowledge and resources to take control of their health through accessible and reliable online tools.
 
 Backend Depolyment : https://s48-hemanth-capstone-heallink.onrender.com/api/remedies
+
+Deployed frontend server : https://playful-naiad-42e7ee.netlify.app/
