@@ -1,17 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div style={{ width: "100vw", overflowX: "hidden" }}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<h2>Login Page</h2>} />
-        </Routes>
-      </Router>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<HomePage />} />
+      </Routes>
+    </Router>
   );
 }
 
