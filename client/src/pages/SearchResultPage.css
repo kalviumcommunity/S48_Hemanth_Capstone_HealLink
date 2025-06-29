@@ -1,0 +1,34 @@
+.result-page {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.result-page h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.result-page section {
+  margin-bottom: 2rem;
+}
+
+.result-page h3 {
+  color: #00b74a;
+  margin-bottom: 0.8rem;
+}
+
+.result-page ul {
+  padding-left: 1rem;
+}
+
+.result-page li {
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+}
+
+.video-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
+import SearchResultPage from "./pages/SearchResultPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/search/:disease" element={<SearchResultPage />} />
       </Routes>
     </Router>
   );

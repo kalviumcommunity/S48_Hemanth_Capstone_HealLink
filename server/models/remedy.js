@@ -1,19 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const remedySchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    instructions: {
-        type: String,
-        required: true
-    }
+  disease: { type: String, required: true, unique: true },
+  remedies: [String],
+  medicines: [String],
+  youtubeLinks: [String]
 });
 
-const Remedy = mongoose.model('Remedy', remedySchema);
-module.exports = Remedy;
+module.exports = mongoose.model("Remedy", remedySchema);
