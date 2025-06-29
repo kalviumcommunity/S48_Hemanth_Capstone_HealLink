@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html,
+#root {
+  width: 100%;
+  height: 100%;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f7fefc;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+.nav-icons img {
+  width: 30px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.search-section {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+}
+
+.search-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.search-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  text-align: center;
+}
+
+.search-overlay h2 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.search-bar {
+  display: flex;
+  background-color: white;
+  border-radius: 30px;
+  padding: 8px;
+  gap: 8px;
+  align-items: center;
+  width: 80%;
+  max-width: 450px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 30px;
+}
+
+.search-bar button {
+  background-color: #00c853;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.favorites-section {
+  padding: 2rem;
+  text-align: center;
+}
+
+.favorites-section h3 {
+  font-size: 1.8rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.favorites-empty img {
+  width: 180px;
+  margin-bottom: 1rem;
+}
+
+.favorites-empty p {
+  font-size: 1rem;
+  color: #555;
+}
