@@ -66,9 +66,15 @@ function SearchResultPage() {
           <img
             src={favIcon}
             alt="Favorites"
+            className="icon"
             onClick={() => navigate("/favorites")}
           />
-          <img src={profileIcon} alt="Profile" />
+          <img
+            src={profileIcon}
+            alt="Profile"
+            className="icon"
+            onClick={() => navigate("/profile")}
+          />
         </div>
       </nav>
 
