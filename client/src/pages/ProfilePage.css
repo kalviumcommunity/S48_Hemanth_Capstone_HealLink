@@ -1,0 +1,42 @@
+.profile-container {
+  max-width: 480px;
+  margin: 2rem auto;
+  background: #f2fdf7;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.profile-container label {
+  display: block;
+  margin-top: 1rem;
+}
+
+.profile-container input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.profile-container .buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.8rem;
+}
+
+.profile-container button {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #00c853;
+  color: white;
+  font-weight: 600;
+}
+
+.msg {
+  color: #006600;
+  font-weight: 500;
+}

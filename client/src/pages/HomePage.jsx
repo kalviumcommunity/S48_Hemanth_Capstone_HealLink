@@ -26,7 +26,7 @@ const Home = () => {
           },
         });
         const json = await res.json();
-        setFavorites(json);
+        setFavorites(json.slice(0, 4));
       } catch (err) {
         console.error("Failed to fetch favorites:", err);
       }
@@ -48,7 +48,12 @@ const Home = () => {
             className="icon"
             onClick={() => navigate("/favorites")}
           />
-          <img src={profileIcon} alt="Profile" className="icon" />
+          <img
+            src={profileIcon}
+            alt="Profile"
+            className="icon"
+            onClick={() => navigate("/profile")}
+          />
         </div>
       </nav>
 

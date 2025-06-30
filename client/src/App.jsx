@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import SearchResultPage from "./pages/SearchResultPage";
 import FavoritesPage from "./pages/FavoritesPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/search/:disease" element={<SearchResultPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Router>
   );
