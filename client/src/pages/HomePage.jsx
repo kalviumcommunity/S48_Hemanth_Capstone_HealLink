@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./HomePage.css";
 import searchBg from "../assets/search-bg.jpg";
 import profileIcon from "../assets/profile-icon.png";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [query, setQuery] = useState("");
+  const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
 
   const handleSearch = () => {
@@ -16,6 +17,24 @@ const Home = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/favorites", {
+          headers: {
+            "x-auth-token": localStorage.getItem("token"),
+          },
+        });
+        const json = await res.json();
+        setFavorites(json);
+      } catch (err) {
+        console.error("Failed to fetch favorites:", err);
+      }
+    };
+
+    fetchFavorites();
+  }, []);
+
   return (
     <div className="home-container">
       <nav className="navbar">
@@ -23,7 +42,12 @@ const Home = () => {
           HealLink
         </div>
         <div className="nav-icons">
-          <img src={favIcon} alt="Favorites" className="icon" />
+          <img
+            src={favIcon}
+            alt="Favorites"
+            className="icon"
+            onClick={() => navigate("/favorites")}
+          />
           <img src={profileIcon} alt="Profile" className="icon" />
         </div>
       </nav>
@@ -46,10 +70,26 @@ const Home = () => {
 
       <section className="favorites-section">
         <h3>Your Favorites</h3>
-        <div className="favorites-empty">
-          <img src={emptyFav} alt="No favorites" />
-          <p>No favorites added yet.</p>
-        </div>
+        {favorites.length === 0 ? (
+          <div className="favorites-empty">
+            <img src={emptyFav} alt="No favorites" />
+            <p>No favorites added yet.</p>
+          </div>
+        ) : (
+          <div className="favorite-list">
+            <ul>
+              {favorites.map((item, i) => (
+                <li
+                  key={i}
+                  onClick={() => navigate(`/search/${item.disease}`)}
+                >
+                  ✅ {item.disease}
+                </li>
+              ))}
+            </ul>
+            <button onClick={() => navigate("/favorites")}>View More</button>
+          </div>
+        )}
       </section>
     </div>
   );
