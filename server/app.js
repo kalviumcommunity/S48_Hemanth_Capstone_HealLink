@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 
 const remediesRoutes = require("./routes/remedies");
 const authRoutes = require("./routes/auth");
+const favoritesRoutes = require("./routes/favorites");
 
 dotenv.config();
 connectDB();
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use("/api/remedies", remediesRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/favorites", favoritesRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to HealLink API");

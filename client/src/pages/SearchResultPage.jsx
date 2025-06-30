@@ -14,6 +14,7 @@ function SearchResultPage() {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [msg, setMsg] = useState("");
+  const [favMsg, setFavMsg] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +34,28 @@ function SearchResultPage() {
     fetchData();
   }, [disease]);
 
+  const addToFavorites = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/favorites", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ disease }),
+      });
+
+      const result = await res.json();
+      if (res.ok) {
+        setFavMsg("✅ Added to favorites!");
+      } else {
+        setFavMsg(`⚠️ ${result.msg}`);
+      }
+    } catch (error) {
+      setFavMsg("Server error while adding to favorites.");
+    }
+  };
+
   return (
     <div className="home-container">
       <nav className="navbar">
@@ -40,13 +63,19 @@ function SearchResultPage() {
           HealLink
         </div>
         <div className="nav-icons">
-          <img src={favIcon} alt="Favorites" />
+          <img
+            src={favIcon}
+            alt="Favorites"
+            onClick={() => navigate("/favorites")}
+          />
           <img src={profileIcon} alt="Profile" />
         </div>
       </nav>
 
       <div className="result-container">
         <h2>Search Results for: <span>"{disease}"</span></h2>
+        <button onClick={addToFavorites} className="fav-btn">❤️ Add to Favorites</button>
+        {favMsg && <p>{favMsg}</p>}
         {msg && <p className="error">{msg}</p>}
 
         {data && (
