@@ -15,11 +15,14 @@ function SearchResultPage() {
   const [data, setData] = useState(null);
   const [msg, setMsg] = useState("");
   const [favMsg, setFavMsg] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const res = await fetch(`http://localhost:5000/api/remedies/${disease}`);
+
         if (res.ok) {
           const json = await res.json();
           setData(json);
@@ -28,6 +31,8 @@ function SearchResultPage() {
         }
       } catch (err) {
         setMsg("Server error.");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -79,17 +84,31 @@ function SearchResultPage() {
       </nav>
 
       <div className="result-container">
-        <h2>Search Results for: <span>"{disease}"</span></h2>
-        <button onClick={addToFavorites} className="fav-btn">❤️ Add to Favorites</button>
+        <h2>
+          Search Results for: <span>"{disease}"</span>
+        </h2>
+
+        <button onClick={addToFavorites} className="fav-btn">
+          ❤️ Add to Favorites
+        </button>
+
         {favMsg && <p>{favMsg}</p>}
         {msg && <p className="error">{msg}</p>}
+        {loading && <p>Loading...</p>}
 
         {data && (
           <>
+            {/* 🤖 AI Suggestion Section */}
+            <section className="ai-box">
+              <h3>🤖 AI Suggestion</h3>
+              <p>{data.aiSuggestion}</p>
+            </section>
+
+            {/* 💊 Medicines */}
             <section>
               <h3>💊 Doctor-Recommended Medicines</h3>
               <ul>
-                {data.medicines.map((med, i) => (
+                {data.remedy.medicines.map((med, i) => (
                   <li key={i}>
                     ✅ <strong>{med.name}</strong><br />
                     <span className="instruction">🕒 {med.instruction}</span>
@@ -98,19 +117,21 @@ function SearchResultPage() {
               </ul>
             </section>
 
+            {/* 🌿 Remedies */}
             <section>
               <h3>🌿 Home Remedies</h3>
               <ul>
-                {data.remedies.map((rem, i) => (
+                {data.remedy.remedies.map((rem, i) => (
                   <li key={i}>✅ {rem}</li>
                 ))}
               </ul>
             </section>
 
+            {/* 🎥 Videos */}
             <section>
               <h3>▶️ YouTube Videos</h3>
               <div className="video-grid">
-                {data.youtubeLinks.map((link, i) => (
+                {data.remedy.youtubeLinks.map((link, i) => (
                   <iframe
                     key={i}
                     width="300"

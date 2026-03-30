@@ -96,3 +96,12 @@ iframe {
   font-weight: 500;
   margin-bottom: 2rem;
 }
+
+.ai-box {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #e3f2fd;
+  border-left: 5px solid #2196f3;
+  font-size: 15px;
+}
